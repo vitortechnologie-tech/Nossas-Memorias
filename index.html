@@ -4,21 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nossa História ❤️</title>
+<title>Pra você ❤️</title>
 
 <style>
 body {
   margin: 0;
   background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   text-align: center;
-  overflow: hidden;
 }
 
 .container {
@@ -26,22 +24,14 @@ body {
   padding: 20px;
 }
 
-img {
-  width: 100%;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  display: none;
-}
-
 h1 {
-  font-size: 22px;
-  margin-bottom: 20px;
+  font-size: 24px;
 }
 
 p {
   font-size: 18px;
-  min-height: 80px;
-  transition: opacity 0.5s;
+  min-height: 90px;
+  transition: 0.3s;
 }
 
 button {
@@ -59,8 +49,17 @@ button:hover {
   background-color: #16a34a;
 }
 
-.fade {
-  opacity: 0;
+#contador {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 15px;
+  display: none;
 }
 </style>
 
@@ -69,74 +68,72 @@ button:hover {
 <body>
 
 <div class="container">
-  <h1>Nossa História 💙</h1>
+  <h1>Pra você, Manuela ❤️</h1>
   
+  <p id="texto">Eu estava pensando em como começar isso...</p>
+
   <img id="foto" src="">
-  
-  <p id="texto">Clique abaixo para começar...</p>
-  
-  <button onclick="proximo()">Avançar</button>
+
+  <div id="contador"></div>
+
+  <button onclick="proximo()">Continuar</button>
 </div>
+
+<audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
+// contador de dias
+const inicio = new Date("2019-07-11");
+const hoje = new Date();
+
+const diff = hoje - inicio;
+const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+document.getElementById("contador").innerText =
+  dias + " dias vivendo o melhor capítulo da minha vida com você";
+
+// história
 const historia = [
-{
-  texto: "Tudo começou de um jeito simples… mas sem a gente saber, já era o começo de tudo.",
-  img: "foto1.jpg"
-},
-{
-  texto: "Entre conversas, risadas e momentos… você foi se tornando minha pessoa favorita.",
-  img: "foto2.jpg"
-},
-{
-  texto: "A gente enfrentou dias difíceis… mas nunca pensei em desistir de nós.",
-  img: "foto3.jpg"
-},
-{
-  texto: "Com o tempo, você virou meu lugar seguro no mundo.",
-  img: "foto4.jpg"
-},
-{
-  texto: "E hoje, depois de tudo… eu tenho uma certeza:",
-  img: "foto5.jpg"
-},
-{
-  texto: "Eu não quero viver nenhum futuro que não tenha você.",
-  img: ""
-},
-{
-  texto: "Agora… fecha isso e vem me encontrar ❤️",
-  img: ""
-}
+  { texto: "Eu fiquei pensando em como colocar tudo isso em palavras...", img: "" },
+  { texto: "E a verdade é que não existe um jeito perfeito de explicar o que você significa pra mim.", img: "" },
+  { texto: "Mas tem uma coisa que eu sei com certeza desde o começo...", img: "foto1.jpg" },
+  { texto: "Você foi mudando a minha vida aos poucos, sem eu perceber.", img: "foto2.jpg" },
+  { texto: "Nos dias bons... nas risadas... nos momentos simples...", img: "foto3.jpg" },
+  { texto: "E até nos dias difíceis, você sempre esteve ali.", img: "foto4.jpg" },
+  { texto: "Com o tempo, você deixou de ser só minha namorada...", img: "foto5.jpg" },
+  { texto: "Você virou casa. Virou paz. Virou tudo pra mim.", img: "" },
+  { texto: "E depois de tudo que a gente viveu nesses 5 anos...", img: "" },
+  { texto: "Eu só tenho uma certeza:", img: "" },
+  { texto: "Eu não quero mais imaginar um futuro que não tenha você nele.", img: "" },
+  { texto: "Agora… fecha isso e vem me encontrar ❤️", img: "" }
 ];
 
 let etapa = 0;
 
 function proximo() {
   const texto = document.getElementById("texto");
-  const foto = document.getElementById("foto");
+  const img = document.getElementById("foto");
 
-  texto.classList.add("fade");
+  if (etapa === 0) {
+    document.getElementById("musica").play();
+  }
 
-  setTimeout(() => {
-    texto.innerText = historia[etapa].texto;
+  texto.innerText = historia[etapa].texto;
 
-    if (historia[etapa].img !== "") {
-      foto.src = historia[etapa].img;
-      foto.style.display = "block";
-    } else {
-      foto.style.display = "none";
-    }
+  if (historia[etapa].img !== "") {
+    img.src = historia[etapa].img;
+    img.style.display = "block";
+  } else {
+    img.style.display = "none";
+  }
 
-    texto.classList.remove("fade");
-
-    etapa++;
-    if (etapa >= historia.length) {
-      etapa = historia.length - 1;
-    }
-
-  }, 300);
+  etapa++;
+  if (etapa >= historia.length) {
+    etapa = historia.length - 1;
+  }
 }
 
 </script>
