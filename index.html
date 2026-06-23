@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memórias</title>
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.container {
+  max-width: 400px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  min-height: 80px;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: #22c55e;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #16a34a;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+.show {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Memórias desbloqueadas</h1>
+  <p id="texto">Clique para começar...</p>
+  <button onclick="next()">Avançar</button>
+</div>
+
+<script>
+
+const textos = [
+  "Tudo começou sem eu perceber… mas, de alguma forma, já era você.",
+  "Entre todos os momentos… você se tornou a minha certeza.",
+  "Mesmo nos dias difíceis… nunca pensei em desistir da gente.",
+  "Com o tempo, você virou meu lugar favorito no mundo.",
+  "Hoje eu só tenho uma única certeza…",
+  "Eu não quero mais uma vida que não tenha você nela.",
+  "Agora… fecha isso e vem me encontrar ❤️"
+];
+
+let etapa = 0;
+
+function next() {
+  const elemento = document.getElementById("texto");
+
+  elemento.classList.remove("show");
+  setTimeout(() => {
+    elemento.innerText = textos[etapa];
+    elemento.classList.add("show");
+    etapa++;
+
+    if (etapa >= textos.length) {
+      etapa = textos.length - 1;
+    }
+  }, 300);
+}
+
+</script>
+
+</body>
+</html>
