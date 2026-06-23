@@ -3,36 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Memórias</title>
+
+<title>Nossa História ❤️</title>
 
 <style>
 body {
   margin: 0;
   background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
 
 .container {
   max-width: 400px;
+  padding: 20px;
+}
+
+img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  display: none;
 }
 
 h1 {
+  font-size: 22px;
   margin-bottom: 20px;
 }
 
 p {
   font-size: 18px;
   min-height: 80px;
+  transition: opacity 0.5s;
 }
 
 button {
   padding: 12px 24px;
+  margin-top: 20px;
   background-color: #22c55e;
   border: none;
   border-radius: 10px;
@@ -47,49 +61,81 @@ button:hover {
 
 .fade {
   opacity: 0;
-  transition: opacity 0.8s;
-}
-
-.show {
-  opacity: 1;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
-  <h1>Memórias desbloqueadas</h1>
-  <p id="texto">Clique para começar...</p>
-  <button onclick="next()">Avançar</button>
+  <h1>Nossa História 💙</h1>
+  
+  <img id="foto" src="">
+  
+  <p id="texto">Clique abaixo para começar...</p>
+  
+  <button onclick="proximo()">Avançar</button>
 </div>
 
 <script>
 
-const textos = [
-  "Tudo começou sem eu perceber… mas, de alguma forma, já era você.",
-  "Entre todos os momentos… você se tornou a minha certeza.",
-  "Mesmo nos dias difíceis… nunca pensei em desistir da gente.",
-  "Com o tempo, você virou meu lugar favorito no mundo.",
-  "Hoje eu só tenho uma única certeza…",
-  "Eu não quero mais uma vida que não tenha você nela.",
-  "Agora… fecha isso e vem me encontrar ❤️"
+const historia = [
+{
+  texto: "Tudo começou de um jeito simples… mas sem a gente saber, já era o começo de tudo.",
+  img: "foto1.jpg"
+},
+{
+  texto: "Entre conversas, risadas e momentos… você foi se tornando minha pessoa favorita.",
+  img: "foto2.jpg"
+},
+{
+  texto: "A gente enfrentou dias difíceis… mas nunca pensei em desistir de nós.",
+  img: "foto3.jpg"
+},
+{
+  texto: "Com o tempo, você virou meu lugar seguro no mundo.",
+  img: "foto4.jpg"
+},
+{
+  texto: "E hoje, depois de tudo… eu tenho uma certeza:",
+  img: "foto5.jpg"
+},
+{
+  texto: "Eu não quero viver nenhum futuro que não tenha você.",
+  img: ""
+},
+{
+  texto: "Agora… fecha isso e vem me encontrar ❤️",
+  img: ""
+}
 ];
 
 let etapa = 0;
 
-function next() {
-  const elemento = document.getElementById("texto");
+function proximo() {
+  const texto = document.getElementById("texto");
+  const foto = document.getElementById("foto");
 
-  elemento.classList.remove("show");
+  texto.classList.add("fade");
+
   setTimeout(() => {
-    elemento.innerText = textos[etapa];
-    elemento.classList.add("show");
-    etapa++;
+    texto.innerText = historia[etapa].texto;
 
-    if (etapa >= textos.length) {
-      etapa = textos.length - 1;
+    if (historia[etapa].img !== "") {
+      foto.src = historia[etapa].img;
+      foto.style.display = "block";
+    } else {
+      foto.style.display = "none";
     }
+
+    texto.classList.remove("fade");
+
+    etapa++;
+    if (etapa >= historia.length) {
+      etapa = historia.length - 1;
+    }
+
   }, 300);
 }
 
