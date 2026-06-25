@@ -22,37 +22,21 @@ body {
 .container {
   max-width: 400px;
   padding: 25px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 }
-``
 
 h1 {
-  font-size: 24px;
+  font-size: 26px;
+  margin-bottom: 15px;
 }
 
 p {
-  font-size: 18px;
-  min-height: 90px;
+  font-size: 20px;
+  min-height: 100px;
+  line-height: 1.4;
   transition: opacity 0.5s;
-}
-``
-
-button {
-  padding: 12px 24px;
-  margin-top: 20px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
 }
 
 button {
@@ -106,58 +90,3 @@ img {
 
 <script>
 
-// contador de dias
-const inicio = new Date("2019-07-11");
-const hoje = new Date();
-
-const diff = hoje - inicio;
-const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-document.getElementById("contador").innerText =
-  dias + " dias vivendo o melhor capítulo da minha vida com você";
-
-// história
-const historia = [
-  { texto: "Eu fiquei pensando em como colocar tudo isso em palavras...", img: "" },
-  { texto: "E a verdade é que não existe um jeito perfeito de explicar o que você significa pra mim.", img: "" },
-  { texto: "Mas tem uma coisa que eu sei com certeza desde o começo...", img: "foto1.jpg" },
-  { texto: "Você foi mudando a minha vida aos poucos, sem eu perceber.", img: "foto2.jpg" },
-  { texto: "Nos dias bons... nas risadas... nos momentos simples...", img: "foto3.jpg" },
-  { texto: "E até nos dias difíceis, você sempre esteve ali.", img: "foto4.jpg" },
-  { texto: "Com o tempo, você deixou de ser só minha namorada...", img: "foto5.jpg" },
-  { texto: "Você virou casa. Virou paz. Virou tudo pra mim.", img: "" },
-  { texto: "E depois de tudo que a gente viveu nesses 5 anos...", img: "" },
-  { texto: "Eu só tenho uma certeza:", img: "" },
-  { texto: "Eu não quero mais imaginar um futuro que não tenha você nele.", img: "" },
-  { texto: "EU TE AMO MUITO MUITO MUITO MAIOR QUE O CÉU ❤️", img: "" }
-];
-
-let etapa = 0;
-
-function proximo() {
-  const texto = document.getElementById("texto");
-  const img = document.getElementById("foto");
-
-  if (etapa === 0) {
-    document.getElementById("musica").play();
-  }
-
-  texto.innerText = historia[etapa].texto;
-
-  if (historia[etapa].img !== "") {
-    img.src = historia[etapa].img;
-    img.style.display = "block";
-  } else {
-    img.style.display = "none";
-  }
-
-  etapa++;
-  if (etapa >= historia.length) {
-    etapa = historia.length - 1;
-  }
-}
-
-</script>
-
-</body>
-</html>
