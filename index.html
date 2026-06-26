@@ -152,7 +152,7 @@ body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   text-shadow: 0 2px 8px rgba(0,0,0,0.45);
-  max-width: 130px;
+  max-width: 140px;
 }
 
 .bloco-nivel.visivel .label-nivel {
@@ -167,9 +167,18 @@ body {
 }
 
 @keyframes pulseFinal {
-  0% { transform: scale(1); box-shadow: 0 0 14px rgba(250,204,21,0.75), 0 12px 30px rgba(0,0,0,0.6); }
-  50% { transform: scale(1.14); box-shadow: 0 0 30px rgba(250,204,21,1), 0 12px 35px rgba(0,0,0,0.7); }
-  100% { transform: scale(1); box-shadow: 0 0 14px rgba(250,204,21,0.75), 0 12px 30px rgba(0,0,0,0.6); }
+  0% { 
+    transform: scale(1); 
+    box-shadow: 0 0 14px rgba(250,204,21,0.75), 0 12px 30px rgba(0,0,0,0.6); 
+  }
+  50% { 
+    transform: scale(1.14); 
+    box-shadow: 0 0 30px rgba(250,204,21,1), 0 12px 35px rgba(0,0,0,0.7); 
+  }
+  100% { 
+    transform: scale(1); 
+    box-shadow: 0 0 14px rgba(250,204,21,0.75), 0 12px 30px rgba(0,0,0,0.6); 
+  }
 }
 
 /* MODAL */
@@ -351,7 +360,7 @@ button:hover {
       <div class="nivel desbloqueado atual" onclick="abrir(0)">
         <img src="foto1.jpeg" alt="Foto 1">
       </div>
-      <div class="label-nivel">NÍVEL 1</div>
+      <div class="label-nivel">MEMÓRIA 1</div>
     </div>
   </div>
 
@@ -360,7 +369,7 @@ button:hover {
       <div class="nivel" onclick="abrir(1)">
         <img src="foto2.jpeg" alt="Foto 2">
       </div>
-      <div class="label-nivel">NÍVEL 2</div>
+      <div class="label-nivel">MEMÓRIA 2</div>
     </div>
   </div>
 
@@ -369,7 +378,7 @@ button:hover {
       <div class="nivel" onclick="abrir(2)">
         <img src="foto3.jpeg" alt="Foto 3">
       </div>
-      <div class="label-nivel">NÍVEL 3</div>
+      <div class="label-nivel">MEMÓRIA 3</div>
     </div>
   </div>
 
@@ -378,7 +387,7 @@ button:hover {
       <div class="nivel" onclick="abrir(3)">
         <img src="foto4.jpeg" alt="Foto 4">
       </div>
-      <div class="label-nivel">NÍVEL 4</div>
+      <div class="label-nivel">MEMÓRIA 4</div>
     </div>
   </div>
 
@@ -387,7 +396,7 @@ button:hover {
       <div class="nivel" onclick="abrir(4)">
         <img src="foto5.jpeg" alt="Foto 5">
       </div>
-      <div class="label-nivel">NÍVEL 5</div>
+      <div class="label-nivel">MEMÓRIA 5</div>
     </div>
   </div>
 
@@ -396,7 +405,7 @@ button:hover {
       <div class="nivel" onclick="abrir(5)">
         <img src="foto6.jpeg" alt="Foto 6">
       </div>
-      <div class="label-nivel">NÍVEL 6</div>
+      <div class="label-nivel">MEMÓRIA 6</div>
     </div>
   </div>
 
@@ -405,7 +414,7 @@ button:hover {
       <div class="nivel" onclick="abrir(6)">
         <img src="foto7.jpeg" alt="Foto 7">
       </div>
-      <div class="label-nivel">NÍVEL 7</div>
+      <div class="label-nivel">MEMÓRIA 7</div>
     </div>
   </div>
 
@@ -414,7 +423,7 @@ button:hover {
       <div class="nivel" onclick="abrir(7)">
         <img src="foto8.jpeg" alt="Foto 8">
       </div>
-      <div class="label-nivel">NÍVEL 8</div>
+      <div class="label-nivel">MEMÓRIA 8</div>
     </div>
   </div>
 
@@ -423,7 +432,7 @@ button:hover {
       <div class="nivel" onclick="abrir(8)">
         <img src="foto9.jpeg" alt="Foto 9">
       </div>
-      <div class="label-nivel">NÍVEL 9</div>
+      <div class="label-nivel">MEMÓRIA 9</div>
     </div>
   </div>
 
@@ -432,7 +441,7 @@ button:hover {
       <div class="nivel final" onclick="abrir(9)">
         <img src="foto10.jpeg" alt="Foto 10">
       </div>
-      <div class="label-nivel">FINAL</div>
+      <div class="label-nivel">PRA SEMPRE</div>
     </div>
   </div>
 
@@ -444,7 +453,7 @@ button:hover {
 
 <div class="modal" id="modal">
   <div class="caixa" id="caixaModal">
-    <div class="tag" id="tagModal">NÍVEL 1</div>
+    <div class="tag" id="tagModal">MEMÓRIA 1</div>
     <h2 class="titulo-modal" id="tituloModal"></h2>
     <img id="imgModal" alt="Foto da nossa história">
     <p id="textoModal"></p>
@@ -465,7 +474,7 @@ const titulos = [
   "O COMEÇO",
   "AS RISADAS",
   "OS MOMENTOS",
-  "AS LUTAÇÕES",
+  "OS DESAFIOS",
   "A ESCOLHA",
   "A CERTEZA",
   "O PRÓXIMO CAPÍTULO"
@@ -527,11 +536,11 @@ function abrir(i) {
 
   if (i === textos.length - 1) {
     caixa.classList.add("final");
-    tag.innerText = "NÍVEL FINAL";
+    tag.innerText = "PRA SEMPRE";
     botao.innerText = "❤️";
   } else {
     caixa.classList.remove("final");
-    tag.innerText = "NÍVEL " + (i + 1);
+    tag.innerText = "MEMÓRIA " + (i + 1);
     botao.innerText = "CONTINUAR";
   }
 
