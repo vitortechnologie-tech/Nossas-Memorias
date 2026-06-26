@@ -28,42 +28,34 @@ body {
 
 /* MAPA */
 .mapa {
-  padding: 30px 0;
-}
-
-/* ITEM */
-.item {
-  width: 100%;
+  padding: 40px 0;
   display: flex;
-  margin: 25px 0;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* POSIÇÃO */
-.esq {
-  justify-content: flex-start;
-  padding-left: 12%;
-}
-
-.dir {
-  justify-content: flex-end;
-  padding-right: 12%;
-}
-
-/* BOLINHA */
+/* NÍVEL */
 .nivel {
-  width: 85px;
-  height: 85px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid white;
+  margin: 25px 0;
   cursor: pointer;
   background: #e5e7eb;
+  border: 4px solid white;
   box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-  transition: 0.25s;
+  transition: 0.3s;
+  display: none;
+}
+
+/* primeiro aparece */
+.nivel.ativo {
+  display: block;
 }
 
 .nivel:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 .nivel img {
@@ -80,19 +72,17 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 /* CAIXA */
 .caixa {
   background: white;
-  border-radius: 20px;
   padding: 25px;
+  border-radius: 20px;
   max-width: 350px;
-  text-align: center;
 }
 
-/* FOTO */
+/* IMAGEM */
 .caixa img {
   width: 100%;
   border-radius: 15px;
@@ -104,19 +94,17 @@ body {
   font-size: 18px;
   line-height: 1.6;
   white-space: pre-line;
-  font-weight: 500;
   text-transform: uppercase;
 }
 
-/* BOTAO */
+/* BOTÃO */
 button {
   padding: 12px 20px;
   border: none;
+  border-radius: 10px;
   background: #22c55e;
   color: white;
-  border-radius: 10px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 </style>
@@ -129,51 +117,8 @@ button {
   NOSSA HISTÓRIA 💙
 </div>
 
-<div class="mapa">
+<div class="mapa" id="mapa"></div>
 
-  <div class="item esq"><div class="nivel" onclick="abrir(0)">
-    <img src="foto1.jpeg">
-  </div></div>
-
-  <div class="item dir"><div class="nivel" onclick="abrir(1)">
-    <img src="foto2.jpeg">
-  </div></div>
-
-  <div class="item esq"><div class="nivel" onclick="abrir(2)">
-    <img src="foto3.jpeg">
-  </div></div>
-
-  <div class="item dir"><div class="nivel" onclick="abrir(3)">
-    <img src="foto4.jpeg">
-  </div></div>
-
-  <div class="item esq"><div class="nivel" onclick="abrir(4)">
-    <img src="foto5.jpeg">
-  </div></div>
-
-  <div class="item dir"><div class="nivel" onclick="abrir(5)">
-    <img src="foto6.jpeg">
-  </div></div>
-
-  <div class="item esq"><div class="nivel" onclick="abrir(6)">
-    <img src="foto7.jpeg">
-  </div></div>
-
-  <div class="item dir"><div class="nivel" onclick="abrir(7)">
-    <img src="foto8.jpeg">
-  </div></div>
-
-  <div class="item esq"><div class="nivel" onclick="abrir(8)">
-    <img src="foto9.jpeg">
-  </div></div>
-
-  <div class="item dir"><div class="nivel" onclick="abrir(9)">
-    <img src="foto10.jpeg">
-  </div></div>
-
-</div>
-
-<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="caixa">
     <img id="imgModal">
@@ -188,31 +133,31 @@ const dados = [
 
 { img:"foto1.jpeg", texto:`QUEM DIRIA QUE ESSA COWGIRL IRIA ENCONTRAR O SEU COWBOY TÃO CEDO` },
 
-{ img:"foto2.jpeg", texto:`O COWBOY 🤠` },
+{ img:"foto2.jpeg", texto:`O COWBOYZÃO NÃO VIA A HORA DE TE ENCONTRAR 🤠` },
 
-{ img:"foto3.jpeg", texto:`ENTRE TANTOS CAMINHOS…
+{ img:"foto3.jpeg", texto:`ENTRE TANTOS CAMINHOS...
 A VIDA ENCONTROU UM JEITO DE CRUZAR A GENTE.` },
 
 { img:"foto4.jpeg", texto:`E SEM PERCEBER,
 VOCÊ FOI SE TORNANDO TUDO PRA MIM.` },
 
-{ img:"foto5.jpeg", texto:`NOS MOMENTOS SIMPLES…
-NAS RISADAS…
+{ img:"foto5.jpeg", texto:`NOS MOMENTOS SIMPLES...
+NAS RISADAS...
 
 FOI ONDE EU COMECEI A TER CERTEZA.` },
 
 { img:"foto6.jpeg", texto:`CADA MOMENTO COM VOCÊ
 SEMPRE PARECEU ÚNICO.` },
 
-{ img:"foto7.jpeg", texto:`TE VIVER NUNCA FOI SÓ FÁCIL…
+{ img:"foto7.jpeg", texto:`TE VIVER NUNCA FOI SÓ FÁCIL...
 
 MAS SEMPRE VALEU A PENA.` },
 
-{ img:"foto8.jpeg", texto:`PORQUE MESMO NOS DIAS DIFÍCEIS…
+{ img:"foto8.jpeg", texto:`PORQUE MESMO NOS DIAS DIFÍCEIS...
 
 ERA VOCÊ QUE EU QUERIA AO MEU LADO.` },
 
-{ img:"foto9.jpeg", texto:`E HOJE, DEPOIS DE TUDO QUE A GENTE VIVEU…
+{ img:"foto9.jpeg", texto:`E HOJE, DEPOIS DE TUDO QUE A GENTE VIVEU...
 
 SÓ FICOU MAIS CLARO PRA MIM.` },
 
@@ -225,18 +170,45 @@ QUER SER MINHA NOIVA? ❤️` }
 
 ];
 
-function abrir(i) {
+const mapa = document.getElementById("mapa");
+
+let nivelAtual = 0;
+
+// criar níveis
+dados.forEach((item, i) => {
+
+  const div = document.createElement("div");
+  div.classList.add("nivel");
+
+  if(i === 0){
+    div.classList.add("ativo");
+  }
+
+  div.innerHTML = `<img src="${item.imgapa.appendChild(div);
+});
+
+function abrir(i){
+
   document.getElementById("modal").style.display = "flex";
   document.getElementById("imgModal").src = dados[i].img;
   document.getElementById("textoModal").innerText = dados[i].texto;
+
+  nivelAtual = i;
 }
 
-function fechar() {
+function fechar(){
+
   document.getElementById("modal").style.display = "none";
+
+  // libera próximo nível
+  const niveis = document.querySelectorAll(".nivel");
+
+  if(nivelAtual + 1 < niveis.length){
+    niveis[nivelAtual + 1].classList.add("ativo");
+  }
 }
 
 </script>
 
 </body>
 </html>
-``
