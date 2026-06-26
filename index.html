@@ -32,18 +32,6 @@ body {
   padding: 40px 0;
 }
 
-/* LINHA CENTRAL */
-.linha {
-  position: absolute;
-  width: 6px;
-  height: 100%;
-  background: #22c55e;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 80px;
-  z-index: -1;
-}
-
 /* NÍVEL */
 .nivel {
   width: 80px;
@@ -57,11 +45,10 @@ body {
   transition: 0.3s;
 }
 
-/* efeito zigue-zague */
+/* zigue-zague */
 .nivel:nth-child(odd) {
   transform: translateX(-60px);
 }
-
 .nivel:nth-child(even) {
   transform: translateX(60px);
 }
@@ -96,7 +83,6 @@ body {
   border-radius: 20px;
 }
 
-/* IMAGEM */
 .caixa img {
   width: 100%;
   border-radius: 15px;
@@ -124,86 +110,70 @@ button {
 
 <div class="mapa">
 
-  <div class="nivel" onclick="abrir(0)">
-    <img src="foto1.jpeg">
-  </div>
-
-  <div class="nivel" onclick="abrir(1)">
-    <img src="foto2.jpeg">
-  </div>
-
-  <div class="nivel" onclick="abrir(2)">
-    <img src="foto3.jpeg">
-  </div>
-
-  <div class="nivel" onclick="abrir(3)">
-    <img src="foto4.jpeg">
-  </div>
-
-  <div class="nivel" onclick="abrir(4)">
-    <img src="foto5.jpeg">
-  </div>
-
-  <div class="nivel" onclick="abrirFinal()">
-    <img src="foto5.jpeg">
-  </div>
+  <div class="nivel" onclick="abrir(0)"><img src="foto1.jpeg"></div>
+  <div class="nivel" onclick="abrir(1)"><img src="foto2.jpeg"></div>
+  <div class="nivel" onclick="abrir(2)"><img src="foto3.jpeg"></div>
+  <div class="nivel" onclick="abrir(3)"><img src="foto4.jpeg"></div>
+  <div class="nivel" onclick="abrir(4)"><img src="foto5.jpeg"></div>
+  <div class="nivel" onclick="abrir(5)"><img src="foto6.jpeg"></div>
+  <div class="nivel" onclick="abrir(6)"><img src="foto7.jpeg"></div>
+  <div class="nivel" onclick="abrir(7)"><img src="foto8.jpeg"></div>
+  <div class="nivel" onclick="abrir(8)"><img src="foto9.jpeg"></div>
+  <div class="nivel" onclick="abrir(9)"><img src="foto10.jpeg"></div>
 
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
-
   <div class="caixa">
     <img id="imgModal">
     <p id="textoModal"></p>
-
     <button onclick="fechar()">Fechar</button>
   </div>
-
 </div>
 
 <script>
 
-// DADOS
 const dados = [
-  {
-    img: "foto1.jpeg",
-    texto: "Foi aqui que tudo começou…"
-  },
-  {
-    img: "foto2.jpeg",
-    texto: "Você foi virando minha pessoa favorita."
-  },
-  {
-    img: "foto3.jpeg",
-    texto: "Cada momento com você ficou especial."
-  },
-  {
-    img: "foto4.jpeg",
-    texto: "Mesmo nos dias difíceis… sempre foi você."
-  },
-  {
-    img: "foto5.jpeg",
-    texto: "E depois de tudo isso…"
-  }
+
+{ img:"foto1.jpeg", texto:`Quem diria que essa cowgirl iria encontrar com esse cowboyzão` },
+
+{ img:"foto2.jpeg", texto:`O cowboyzão aqui não via a hora de te encontrar` },
+
+{ img:"foto3.jpeg", texto:`Entre tantos caminhos… a vida encontrou um jeito de cruzar a gente.` },
+
+{ img:"foto4.jpeg", texto:`E sem perceber, você foi se tornando tudo pra mim.` },
+
+{ img:"foto5.jpeg", texto:`Nos momentos simples… nas risadas…
+foi onde eu comecei a ter certeza.` },
+
+{ img:"foto6.jpeg", texto:`Cada momento com você sempre pareceu único.` },
+
+{ img:"foto7.jpeg", texto:`Te viver nunca foi só fácil…
+mas sempre valeu a pena.` },
+
+{ img:"foto8.jpeg", texto:`Porque mesmo nos dias difíceis…
+era você que eu queria ao meu lado.` },
+
+{ img:"foto9.jpeg", texto:`E hoje, depois de tudo que a gente viveu…
+só ficou mais claro pra mim.` },
+
+{ img:"foto10.jpeg", texto:`Eu te amo muito muito muito maior que o céu ❤️
+
+Eu escolho você.
+Hoje, amanhã e todos os dias.
+
+Quer noivar comigo? ❤️` }
+
 ];
 
-// ABRIR NÍVEL
+// abrir nível
 function abrir(i) {
   document.getElementById("modal").style.display = "flex";
   document.getElementById("imgModal").src = dados[i].img;
   document.getElementById("textoModal").innerText = dados[i].texto;
 }
 
-// FINAL
-function abrirFinal() {
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("imgModal").src = "foto5.jpeg";
-  document.getElementById("textoModal").innerText =
-    "EU TE AMO MUITO MUITO MUITO MAIOR QUE O CÉU ❤️";
-}
-
-// FECHAR
+// fechar
 function fechar() {
   document.getElementById("modal").style.display = "none";
 }
