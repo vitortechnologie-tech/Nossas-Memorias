@@ -14,24 +14,24 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   text-align: center;
+}
 
+/* FUNDO REAL */
+.fundo {
+  position: fixed;
+  inset: 0;
   background-image: url("fundo.jpg");
   background-size: cover;
   background-position: center;
+  z-index: -2;
 }
 
-/* ESCURECE O FUNDO */
-body::before{
-  content: "";
+/* ESCURECIMENTO */
+.overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-}
-
-/* CONTEUDO ACIMA DO FUNDO */
-body *{
-  position: relative;
-  z-index: 1;
+  z-index: -1;
 }
 
 .topo {
@@ -47,14 +47,14 @@ body *{
   align-items: center;
 }
 
-/* LINHAS */
+/* ZIGZAG LEVE */
 .linha {
   width: 100%;
   display: flex;
 }
 
-.esq { justify-content: flex-start; padding-left: 12%; }
-.dir { justify-content: flex-end; padding-right: 12%; }
+.esq { justify-content: flex-start; padding-left: 10%; }
+.dir { justify-content: flex-end; padding-right: 10%; }
 
 /* NÍVEL */
 .nivel {
@@ -69,36 +69,36 @@ body *{
   cursor: pointer;
 }
 
-.nivel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 /* ATIVO */
 .nivel.ativo {
   display: block;
   animation: pulse 1.2s infinite;
 }
 
-/* ANIMAÇÃO */
+.nivel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* animação */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.12); }
   100% { transform: scale(1); }
 }
 
-/* MODAL */
+/* modal */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   display: none;
   justify-content: center;
   align-items: center;
 }
 
-/* GLASS */
+/* glass */
 .caixa {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(10px);
@@ -132,6 +132,9 @@ button {
 
 <body>
 
+<div class="fundo"></div>
+<div class="overlay"></div>
+
 <div class="topo">NOSSA HISTÓRIA 💙</div>
 
 <div class="mapa">
@@ -149,8 +152,10 @@ button {
 
 </div>
 
-<!-- MÚSICA CORRETA -->
-<audio id="musica" src="musica.mp3" loop></audio>
+<!-- AUDIO CORRETO -->
+<audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
@@ -177,13 +182,13 @@ const textos = [
 ];
 
 let atual = 0;
-let começou = false;
+let musicaIniciou = false;
 
 function abrir(i){
 
-  if(!começou){
+  if(!musicaIniciou){
     document.getElementById("musica").play().catch(()=>{});
-    começou = true;
+    musicaIniciou = true;
   }
 
   document.getElementById("modal").style.display = "flex";
@@ -208,4 +213,3 @@ function fechar(){
 
 </body>
 </html>
-``
