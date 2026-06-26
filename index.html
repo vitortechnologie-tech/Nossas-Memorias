@@ -14,12 +14,11 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  background: 
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
     url('fundo.jpg') center/cover no-repeat;
 }
 
-/* TOPO */
 .topo {
   color: white;
   padding: 20px;
@@ -29,44 +28,44 @@ body {
 
 /* MAPA */
 .mapa {
-  padding: 30px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* POSIÇÕES CRUZADAS */
+/* LINHA */
 .linha {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
+/* ZIGZAG CONTROLADO */
 .esq {
   justify-content: flex-start;
-  padding-left: 20%;
+  padding-left: 10%;
 }
 
 .dir {
   justify-content: flex-end;
-  padding-right: 20%;
+  padding-right: 10%;
 }
 
 /* NÍVEL */
 .nivel {
-  width: 90px;
-  height: 90px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 20px 0;
+  margin: 15px 0;
   display: none;
   border: 4px solid white;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
   cursor: pointer;
   transition: 0.3s;
 }
 
-/* ativo com animação */
+/* NIVEL ATIVO */
 .nivel.ativo {
   display: block;
   animation: pulse 1.2s infinite;
@@ -82,7 +81,7 @@ body {
   transform: scale(1.1);
 }
 
-/* animação */
+/* ANIMAÇÃO */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.15); }
@@ -99,24 +98,22 @@ body {
   align-items: center;
 }
 
-/* GLASS EFFECT */
+/* GLASS */
 .caixa {
   background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   padding: 25px;
   border-radius: 20px;
   max-width: 350px;
   color: white;
 }
 
-/* FOTO */
 .caixa img {
   width: 100%;
   border-radius: 15px;
   margin-bottom: 15px;
 }
 
-/* TEXTO */
 .caixa p {
   font-size: 18px;
   line-height: 1.6;
@@ -124,7 +121,6 @@ body {
   text-transform: uppercase;
 }
 
-/* BOTÃO */
 button {
   padding: 12px 20px;
   background: #22c55e;
@@ -132,16 +128,14 @@ button {
   border-radius: 10px;
   color: white;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="topo">NOSSA HISTÓRIA 💙</div>
+<div class="topo">NOSSA HISTÓRIA 💚</div>
 
 <div class="mapa">
 
@@ -152,71 +146,3 @@ button {
   <div class="linha esq"><div class="nivel" onclick="abrir(4)"><img src="foto5.jpeg"></div></div>
   <div class="linha dir"><div class="nivel" onclick="abrir(5)"><img src="foto6.jpeg"></div></div>
   <div class="linha esq"><div class="nivel" onclick="abrir(6)"><img src="foto7.jpeg"></div></div>
-  <div class="linha dir"><div class="nivel" onclick="abrir(7)"><img src="foto8.jpeg"></div></div>
-  <div class="linha esq"><div class="nivel" onclick="abrir(8)"><img src="foto9.jpeg"></div></div>
-  <div class="linha dir"><div class="nivel" onclick="abrir(9)"><img src="foto10.jpeg"></div></div>
-
-</div>
-
-<!-- MÚSICA -->
-<audio id="musica" preload="auto" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="caixa">
-    <img id="imgModal">
-    <p id="textoModal"></p>
-    <button onclick="fechar()">CONTINUAR</button>
-  </div>
-</div>
-
-<script>
-
-const textos = [
-
-// (seus textos continuam iguais aqui — não mudei)
-
-];
-
-let atual = 0;
-let musicaIniciou = false;
-
-function abrir(i){
-
-  if(!musicaIniciou){
-    document.getElementById("musica").play().catch(()=>{});
-    musicaIniciou = true;
-  }
-
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("imgModal").src = "foto" + (i+1) + ".jpeg";
-  document.getElementById("textoModal").innerText = textos[i];
-
-  atual = i;
-}
-
-function fechar(){
-
-  document.getElementById("modal").style.display = "none";
-
-  const niveis = document.querySelectorAll(".nivel");
-
-  if(atual + 1 < niveis.length){
-    const next = niveis[atual + 1];
-
-    next.classList.add("ativo");
-
-    next.style.transform = "scale(0)";
-    setTimeout(() => {
-      next.style.transition = "0.3s";
-      next.style.transform = "scale(1)";
-    }, 50);
-  }
-}
-
-</script>
-
-</body>
-</html>
