@@ -8,6 +8,7 @@
 
 <style>
 
+/* BASE */
 body {
   margin: 0;
   background: #f1f5f9;
@@ -20,37 +21,56 @@ body {
   background: #60a5fa;
   color: white;
   padding: 20px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
 }
 
 /* MAPA */
 .mapa {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
   padding: 40px 0;
 }
 
-/* NÍVEL */
-.nivel {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 30px 0;
-  cursor: pointer;
-  border: 4px solid white;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: 0.3s;
+/* LINHA CENTRAL */
+.linha {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  background: #22c55e;
+  height: 100%;
+  transform: translateX(-50%);
 }
 
-/* zigue-zague */
-.nivel:nth-child(odd) {
-  transform: translateX(-60px);
+/* CONTAINER DE CADA NIVEL */
+.item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
 }
-.nivel:nth-child(even) {
-  transform: translateX(60px);
+
+/* POSIÇÃO */
+.item.esq {
+  justify-content: flex-start;
+  padding-left: 15%;
+}
+
+.item.dir {
+  justify-content: flex-end;
+  padding-right: 15%;
+}
+
+/* BOLINHA */
+.nivel {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: 0.3s;
 }
 
 .nivel img {
@@ -71,31 +91,42 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 /* CAIXA */
 .caixa {
   background: white;
   color: black;
-  width: 90%;
-  max-width: 350px;
-  padding: 20px;
   border-radius: 20px;
+  padding: 20px;
+  max-width: 350px;
+  text-align: center;
 }
 
+/* FOTO GRANDE */
 .caixa img {
   width: 100%;
   border-radius: 15px;
   margin-bottom: 15px;
 }
 
+/* TEXTO */
+.caixa p {
+  font-size: 18px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* BOTAO */
 button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   background: #22c55e;
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 </style>
@@ -110,24 +141,27 @@ button {
 
 <div class="mapa">
 
-  <div class="nivel" onclick="abrir(0)"><img src="foto1.jpeg"></div>
-  <div class="nivel" onclick="abrir(1)"><img src="foto2.jpeg"></div>
-  <div class="nivel" onclick="abrir(2)"><img src="foto3.jpeg"></div>
-  <div class="nivel" onclick="abrir(3)"><img src="foto4.jpeg"></div>
-  <div class="nivel" onclick="abrir(4)"><img src="foto5.jpeg"></div>
-  <div class="nivel" onclick="abrir(5)"><img src="foto6.jpeg"></div>
-  <div class="nivel" onclick="abrir(6)"><img src="foto7.jpeg"></div>
-  <div class="nivel" onclick="abrir(7)"><img src="foto8.jpeg"></div>
-  <div class="nivel" onclick="abrir(8)"><img src="foto9.jpeg"></div>
-  <div class="nivel" onclick="abrir(9)"><img src="foto10.jpeg"></div>
+  <div class="linha"></div>
+
+  <div class="item esq"><div class="nivel" onclick="abrir(0)">foto1.jpeg</div></div>
+  <div class="item dir"><div class="nivel" onclick="abrir(1)">foto2.jpeg</div></div>
+  <div class="item esq"><div class="nivel" onclick="abrir(2)">foto3.jpeg</div></div>
+  <div class="item dir"><div class="nivel" onclick="abrir(3)">foto4.jpeg</div></div>
+  <div class="item esq"><div class="nivel" onclick="abrir(4)">foto5.jpeg</div></div>
+  <div class="item dir"><div class="nivel" onclick="abrir(5)">foto6.jpeg</div></div>
+  <div class="item esq"><div class="nivel" onclick="abrir(6)">foto7.jpeg</div></div>
+  <div class="item dir"><div class="nivel" onclick="abrir(7)">foto8.jpeg</div></div>
+  <div class="item esq"><div class="nivel" onclick="abrir(8)">foto9.jpeg</div></div>
+  <div class="item dir"><div class="nivel" onclick="abrir(9)">foto10.jpeg</div></div>
 
 </div>
 
+<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="caixa">
     <img id="imgModal">
     <p id="textoModal"></p>
-    <button onclick="fechar()">Fechar</button>
+    <button onclick="fechar()">Continuar</button>
   </div>
 </div>
 
@@ -135,26 +169,38 @@ button {
 
 const dados = [
 
-{ img:"foto1.jpeg", texto:`Quem diria que essa cowgirl iria encontrar com esse cowboyzão` },
+{ img:"foto1.jpeg", texto:`Quem diria que essa cowgirl tão linda e fofa
 
-{ img:"foto2.jpeg", texto:`O cowboyzão aqui não via a hora de te encontrar` },
+iria encontrar com esse cowboyzão` },
 
-{ img:"foto3.jpeg", texto:`Entre tantos caminhos… a vida encontrou um jeito de cruzar a gente.` },
+{ img:"foto2.jpeg", texto:`O cowboyzão aqui
 
-{ img:"foto4.jpeg", texto:`E sem perceber, você foi se tornando tudo pra mim.` },
+não via a hora de te encontrar` },
 
-{ img:"foto5.jpeg", texto:`Nos momentos simples… nas risadas…
+{ img:"foto3.jpeg", texto:`Entre tantos caminhos…
+a vida encontrou um jeito de cruzar a gente.` },
+
+{ img:"foto4.jpeg", texto:`E sem perceber,
+você foi se tornando tudo pra mim.` },
+
+{ img:"foto5.jpeg", texto:`Nos momentos simples…
+nas risadas…
+
 foi onde eu comecei a ter certeza.` },
 
-{ img:"foto6.jpeg", texto:`Cada momento com você sempre pareceu único.` },
+{ img:"foto6.jpeg", texto:`Cada momento com você
+sempre pareceu único.` },
 
 { img:"foto7.jpeg", texto:`Te viver nunca foi só fácil…
+
 mas sempre valeu a pena.` },
 
 { img:"foto8.jpeg", texto:`Porque mesmo nos dias difíceis…
+
 era você que eu queria ao meu lado.` },
 
 { img:"foto9.jpeg", texto:`E hoje, depois de tudo que a gente viveu…
+
 só ficou mais claro pra mim.` },
 
 { img:"foto10.jpeg", texto:`Eu te amo muito muito muito maior que o céu ❤️
@@ -162,18 +208,16 @@ só ficou mais claro pra mim.` },
 Eu escolho você.
 Hoje, amanhã e todos os dias.
 
-Quer noivar comigo? ❤️` }
+Quer ser minha noiva? ❤️` }
 
 ];
 
-// abrir nível
 function abrir(i) {
   document.getElementById("modal").style.display = "flex";
   document.getElementById("imgModal").src = dados[i].img;
   document.getElementById("textoModal").innerText = dados[i].texto;
 }
 
-// fechar
 function fechar() {
   document.getElementById("modal").style.display = "none";
 }
