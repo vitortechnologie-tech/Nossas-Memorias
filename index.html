@@ -14,16 +14,30 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  background:
-    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
-    url('fundo.jpg') center/cover no-repeat;
+
+  background-image: url("fundo.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* ESCURECE O FUNDO */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+/* CONTEUDO ACIMA DO FUNDO */
+body *{
+  position: relative;
+  z-index: 1;
 }
 
 .topo {
   color: white;
   padding: 20px;
   font-size: 22px;
-  font-weight: 600;
 }
 
 /* MAPA */
@@ -37,38 +51,22 @@ body {
 .linha {
   width: 100%;
   display: flex;
-  justify-content: center;
 }
 
-/* ZIGZAG SUAVE */
-.esq {
-  justify-content: flex-start;
-  padding-left: 8%;
-}
-
-.dir {
-  justify-content: flex-end;
-  padding-right: 8%;
-}
+.esq { justify-content: flex-start; padding-left: 12%; }
+.dir { justify-content: flex-end; padding-right: 12%; }
 
 /* NÍVEL */
 .nivel {
-  width: 80px;
-  height: 80px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 12px 0;
+  margin: 15px 0;
   display: none;
   border: 4px solid white;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   cursor: pointer;
-  transition: transform 0.3s;
-}
-
-/* ATIVO */
-.nivel.ativo {
-  display: block;
-  animation: pulse 1.2s infinite;
 }
 
 .nivel img {
@@ -77,8 +75,10 @@ body {
   object-fit: cover;
 }
 
-.nivel:hover {
-  transform: scale(1.1);
+/* ATIVO */
+.nivel.ativo {
+  display: block;
+  animation: pulse 1.2s infinite;
 }
 
 /* ANIMAÇÃO */
@@ -92,7 +92,7 @@ body {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.8);
   display: none;
   justify-content: center;
   align-items: center;
@@ -101,7 +101,7 @@ body {
 /* GLASS */
 .caixa {
   background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   padding: 25px;
   border-radius: 20px;
   max-width: 350px;
@@ -110,24 +110,21 @@ body {
 
 .caixa img {
   width: 100%;
-  border-radius: 15px;
-  margin-bottom: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
 .caixa p {
-  font-size: 18px;
-  line-height: 1.5;
   white-space: pre-line;
   text-transform: uppercase;
 }
 
 button {
-  padding: 12px 20px;
+  padding: 10px 20px;
   background: #22c55e;
+  color: white;
   border: none;
   border-radius: 10px;
-  color: white;
-  cursor: pointer;
 }
 
 </style>
@@ -135,28 +132,27 @@ button {
 
 <body>
 
-<div class="topo">NOSSA HISTÓRIA 💚</div>
+<div class="topo">NOSSA HISTÓRIA 💙</div>
 
 <div class="mapa">
 
-  <div class="linha esq"><div class="nivel ativo" onclick="abrir(0)"><img src="foto1.jpeg"></div></div>
-  <div class="linha dir"><div class="nivel" onclick="abrir(1)"><img src="foto2.jpeg"></div></div>
-  <div class="linha esq"><div class="nivel" onclick="abrir(2)"><img src="foto3.jpeg"></div></div>
-  <div class="linha dir"><div class="nivel" onclick="abrir(3)"><img src="foto4.jpeg"></div></div>
-  <div class="linha esq"><div class="nivel" onclick="abrir(4)"><img src="foto5.jpeg"></div></div>
-  <div class="linha dir"><div class="nivel" onclick="abrir(5)"><img src="foto6.jpeg"></div></div>
-  <div class="linha esq"><div class="nivel" onclick="abrir(6)"><img src="foto7.jpeg"></div></div>
-  <div class="linha dir"><div class="nivel" onclick="abrir(7)"><img src="foto8.jpeg"></div></div>
-  <div class="linha esq"><div class="nivel" onclick="abrir(8)">foto9.jpeg"></div></div>
-  <div class="linha dir"><div class="nivel" onclick="abrir(9)"><img src="foto10.jpeg"></div></div>
+<div class="linha esq"><div class="nivel ativo" onclick="abrir(0)"><img src="foto1.jpeg"></div></div>
+<div class="linha dir"><div class="nivel" onclick="abrir(1)"><img src="foto2.jpeg"></div></div>
+<div class="linha esq"><div class="nivel" onclick="abrir(2)"><img src="foto3.jpeg"></div></div>
+<div class="linha dir"><div class="nivel" onclick="abrir(3)"><img src="foto4.jpeg"></div></div>
+<div class="linha esq"><div class="nivel" onclick="abrir(4)"><img src="foto5.jpeg"></div></div>
+<div class="linha dir"><div class="nivel" onclick="abrir(5)"><img src="foto6.jpeg"></div></div>
+<div class="linha esq"><div class="nivel" onclick="abrir(6)"><img src="foto7.jpeg"></div></div>
+<div class="linha dir"><div class="nivel" onclick="abrir(7)"><img src="foto8.jpeg"></div></div>
+<div class="linha esq"><div class="nivel" onclick="abrir(8)"><img src="foto9.jpeg"></div></div>
+<div class="linha dir"><div class="nivel" onclick="abrir(9)"><img src="foto10.jpeg"></div></div>
 
 </div>
 
-<!-- AUDIO CORRIGIDO -->
-<audio id="musica" preload="auto" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
+<!-- MÚSICA CORRETA -->
+<audio id="musica" src="musica.mp3" loop></audio>
 
+<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="caixa">
     <img id="imgModal">
@@ -168,47 +164,30 @@ button {
 <script>
 
 const textos = [
-`QUEM DIRIA QUE ESSA COWGIRL IRIA ENCONTRAR O SEU COWBOY TÃO CEDO`,
-`O COWBOYZÃO NÃO VIA A HORA DE TE ENCONTRAR 🤠`,
-`ENTRE TANTOS CAMINHOS...
-A VIDA ENCONTROU UM JEITO DE CRUZAR A GENTE.`,
-`E SEM PERCEBER,
-VOCÊ FOI SE TORNANDO TUDO PRA MIM.`,
-`NOS MOMENTOS SIMPLES...
-NAS RISADAS...
-
-FOI ONDE EU COMECEI A TER CERTEZA.`,
-`CADA MOMENTO COM VOCÊ
-SEMPRE PARECEU ÚNICO.`,
-`TE VIVER NUNCA FOI SÓ FÁCIL...
-
-MAS SEMPRE VALEU A PENA.`,
-`PORQUE MESMO NOS DIAS DIFÍCEIS...
-
-ERA VOCÊ QUE EU QUERIA AO MEU LADO.`,
-`E HOJE, DEPOIS DE TUDO QUE A GENTE VIVEU...
-
-SÓ FICOU MAIS CLARO PRA MIM.`,
-`EU TE AMO MUITO MUITO MUITO MAIOR QUE O CÉU ❤️
-
-EU ESCOLHO VOCÊ.
-HOJE, AMANHÃ E TODOS OS DIAS.
-
-QUER SER MINHA NOIVA? ❤️`
+"QUEM DIRIA QUE ESSA COWGIRL IRIA ENCONTRAR O SEU COWBOY TÃO CEDO",
+"O COWBOYZÃO NÃO VIA A HORA DE TE ENCONTRAR 🤠",
+"ENTRE TANTOS CAMINHOS...\nA VIDA ENCONTROU UM JEITO DE CRUZAR A GENTE.",
+"E SEM PERCEBER,\nVOCÊ FOI SE TORNANDO TUDO PRA MIM.",
+"NOS MOMENTOS SIMPLES...\nNAS RISADAS...\n\nFOI ONDE EU COMECEI A TER CERTEZA.",
+"CADA MOMENTO COM VOCÊ\nSEMPRE PARECEU ÚNICO.",
+"TE VIVER NUNCA FOI SÓ FÁCIL...\n\nMAS SEMPRE VALEU A PENA.",
+"PORQUE MESMO NOS DIAS DIFÍCEIS...\n\nERA VOCÊ QUE EU QUERIA AO MEU LADO.",
+"E HOJE, DEPOIS DE TUDO QUE A GENTE VIVEU...\n\nSÓ FICOU MAIS CLARO PRA MIM.",
+"EU TE AMO MUITO MUITO MUITO MAIOR QUE O CÉU ❤️\n\nEU ESCOLHO VOCÊ.\nHOJE, AMANHÃ E TODOS OS DIAS.\n\nQUER SER MINHA NOIVA? ❤️"
 ];
 
 let atual = 0;
-let musicaIniciou = false;
+let começou = false;
 
 function abrir(i){
 
-  if(!musicaIniciou){
+  if(!começou){
     document.getElementById("musica").play().catch(()=>{});
-    musicaIniciou = true;
+    começou = true;
   }
 
   document.getElementById("modal").style.display = "flex";
-  document.getElementById("imgModal").src = "foto" + (i+1) + ".jpeg";
+  document.getElementById("imgModal").src = "foto"+(i+1)+".jpeg";
   document.getElementById("textoModal").innerText = textos[i];
 
   atual = i;
@@ -220,14 +199,8 @@ function fechar(){
 
   const niveis = document.querySelectorAll(".nivel");
 
-  if(atual + 1 < niveis.length){
-    const next = niveis[atual + 1];
-    next.classList.add("ativo");
-
-    next.style.transform = "scale(0)";
-    setTimeout(() => {
-      next.style.transform = "scale(1)";
-    }, 50);
+  if(atual+1 < niveis.length){
+    niveis[atual+1].classList.add("ativo");
   }
 }
 
@@ -235,3 +208,4 @@ function fechar(){
 
 </body>
 </html>
+``
