@@ -6,13 +6,14 @@
 
 <title>Nossa Jornada ❤️</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
 
-/* BASE */
 body {
   margin: 0;
   background: #f1f5f9;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
 }
 
@@ -22,65 +23,53 @@ body {
   color: white;
   padding: 20px;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 /* MAPA */
 .mapa {
-  position: relative;
-  padding: 40px 0;
+  padding: 30px 0;
 }
 
-/* LINHA CENTRAL */
-.linha {
-  position: absolute;
-  left: 50%;
-  width: 4px;
-  background: #22c55e;
-  height: 100%;
-  transform: translateX(-50%);
-}
-
-/* CONTAINER DE CADA NIVEL */
+/* ITEM */
 .item {
-  position: relative;
   width: 100%;
   display: flex;
-  justify-content: center;
-  margin: 30px 0;
+  margin: 25px 0;
 }
 
 /* POSIÇÃO */
-.item.esq {
+.esq {
   justify-content: flex-start;
-  padding-left: 15%;
+  padding-left: 12%;
 }
 
-.item.dir {
+.dir {
   justify-content: flex-end;
-  padding-right: 15%;
+  padding-right: 12%;
 }
 
 /* BOLINHA */
 .nivel {
-  width: 90px;
-  height: 90px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   overflow: hidden;
   border: 4px solid white;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  transition: 0.3s;
+  background: #e5e7eb;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transition: 0.25s;
+}
+
+.nivel:hover {
+  transform: scale(1.08);
 }
 
 .nivel img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.nivel:hover {
-  transform: scale(1.1);
 }
 
 /* MODAL */
@@ -97,14 +86,13 @@ body {
 /* CAIXA */
 .caixa {
   background: white;
-  color: black;
   border-radius: 20px;
-  padding: 20px;
+  padding: 25px;
   max-width: 350px;
   text-align: center;
 }
 
-/* FOTO GRANDE */
+/* FOTO */
 .caixa img {
   width: 100%;
   border-radius: 15px;
@@ -114,8 +102,10 @@ body {
 /* TEXTO */
 .caixa p {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.6;
   white-space: pre-line;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 /* BOTAO */
@@ -136,23 +126,50 @@ button {
 <body>
 
 <div class="topo">
-  Nossa história 💙
+  NOSSA HISTÓRIA 💙
 </div>
 
 <div class="mapa">
 
-  <div class="linha"></div>
+  <div class="item esq"><div class="nivel" onclick="abrir(0)">
+    <img src="foto1.jpeg">
+  </div></div>
 
-  <div class="item esq"><div class="nivel" onclick="abrir(0)">foto1.jpeg</div></div>
-  <div class="item dir"><div class="nivel" onclick="abrir(1)">foto2.jpeg</div></div>
-  <div class="item esq"><div class="nivel" onclick="abrir(2)">foto3.jpeg</div></div>
-  <div class="item dir"><div class="nivel" onclick="abrir(3)">foto4.jpeg</div></div>
-  <div class="item esq"><div class="nivel" onclick="abrir(4)">foto5.jpeg</div></div>
-  <div class="item dir"><div class="nivel" onclick="abrir(5)">foto6.jpeg</div></div>
-  <div class="item esq"><div class="nivel" onclick="abrir(6)">foto7.jpeg</div></div>
-  <div class="item dir"><div class="nivel" onclick="abrir(7)">foto8.jpeg</div></div>
-  <div class="item esq"><div class="nivel" onclick="abrir(8)">foto9.jpeg</div></div>
-  <div class="item dir"><div class="nivel" onclick="abrir(9)">foto10.jpeg</div></div>
+  <div class="item dir"><div class="nivel" onclick="abrir(1)">
+    <img src="foto2.jpeg">
+  </div></div>
+
+  <div class="item esq"><div class="nivel" onclick="abrir(2)">
+    <img src="foto3.jpeg">
+  </div></div>
+
+  <div class="item dir"><div class="nivel" onclick="abrir(3)">
+    <img src="foto4.jpeg">
+  </div></div>
+
+  <div class="item esq"><div class="nivel" onclick="abrir(4)">
+    <img src="foto5.jpeg">
+  </div></div>
+
+  <div class="item dir"><div class="nivel" onclick="abrir(5)">
+    <img src="foto6.jpeg">
+  </div></div>
+
+  <div class="item esq"><div class="nivel" onclick="abrir(6)">
+    <img src="foto7.jpeg">
+  </div></div>
+
+  <div class="item dir"><div class="nivel" onclick="abrir(7)">
+    <img src="foto8.jpeg">
+  </div></div>
+
+  <div class="item esq"><div class="nivel" onclick="abrir(8)">
+    <img src="foto9.jpeg">
+  </div></div>
+
+  <div class="item dir"><div class="nivel" onclick="abrir(9)">
+    <img src="foto10.jpeg">
+  </div></div>
 
 </div>
 
@@ -161,7 +178,7 @@ button {
   <div class="caixa">
     <img id="imgModal">
     <p id="textoModal"></p>
-    <button onclick="fechar()">Continuar</button>
+    <button onclick="fechar()">CONTINUAR</button>
   </div>
 </div>
 
@@ -173,38 +190,38 @@ const dados = [
 
 { img:"foto2.jpeg", texto:`O COWBOY 🤠` },
 
-{ img:"foto3.jpeg", texto:`Entre tantos caminhos…
-a vida encontrou um jeito de cruzar a gente.` },
+{ img:"foto3.jpeg", texto:`ENTRE TANTOS CAMINHOS…
+A VIDA ENCONTROU UM JEITO DE CRUZAR A GENTE.` },
 
-{ img:"foto4.jpeg", texto:`E sem perceber,
-você foi se tornando tudo pra mim.` },
+{ img:"foto4.jpeg", texto:`E SEM PERCEBER,
+VOCÊ FOI SE TORNANDO TUDO PRA MIM.` },
 
-{ img:"foto5.jpeg", texto:`Nos momentos simples…
-nas risadas…
+{ img:"foto5.jpeg", texto:`NOS MOMENTOS SIMPLES…
+NAS RISADAS…
 
-foi onde eu comecei a ter certeza.` },
+FOI ONDE EU COMECEI A TER CERTEZA.` },
 
-{ img:"foto6.jpeg", texto:`Cada momento com você
-sempre pareceu único.` },
+{ img:"foto6.jpeg", texto:`CADA MOMENTO COM VOCÊ
+SEMPRE PARECEU ÚNICO.` },
 
-{ img:"foto7.jpeg", texto:`Te viver nunca foi só fácil…
+{ img:"foto7.jpeg", texto:`TE VIVER NUNCA FOI SÓ FÁCIL…
 
-mas sempre valeu a pena.` },
+MAS SEMPRE VALEU A PENA.` },
 
-{ img:"foto8.jpeg", texto:`Porque mesmo nos dias difíceis…
+{ img:"foto8.jpeg", texto:`PORQUE MESMO NOS DIAS DIFÍCEIS…
 
-era você que eu queria ao meu lado.` },
+ERA VOCÊ QUE EU QUERIA AO MEU LADO.` },
 
-{ img:"foto9.jpeg", texto:`E hoje, depois de tudo que a gente viveu…
+{ img:"foto9.jpeg", texto:`E HOJE, DEPOIS DE TUDO QUE A GENTE VIVEU…
 
-só ficou mais claro pra mim.` },
+SÓ FICOU MAIS CLARO PRA MIM.` },
 
-{ img:"foto10.jpeg", texto:`Eu te amo muito muito muito maior que o céu ❤️
+{ img:"foto10.jpeg", texto:`EU TE AMO MUITO MUITO MUITO MAIOR QUE O CÉU ❤️
 
-Eu escolho você.
-Hoje, amanhã e todos os dias.
+EU ESCOLHO VOCÊ.
+HOJE, AMANHÃ E TODOS OS DIAS.
 
-Quer ser minha noiva? ❤️` }
+QUER SER MINHA NOIVA? ❤️` }
 
 ];
 
@@ -222,3 +239,4 @@ function fechar() {
 
 </body>
 </html>
+``
